@@ -1,0 +1,12 @@
+{
+  "name": "support-tickets",
+  "version": "1.0.0",
+  "description": "API de gerenciamento de tickets de suporte",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
