@@ -8,7 +8,7 @@ export function routeHandler(request, response) {
 
   // Se a rota for encontrada, chama o controlador
   if (route) {
-    return route.controller(request, response);
+    return route.controller({ request, response });
   }
   // Se a rota não for encontrada, retorna um erro 404
   return response.writeHead(404).end();
