@@ -22,4 +22,15 @@ export class Database {
     // salva o banco de dados no arquivo db.json
     fs.writeFile(DATABASE_PATH, JSON.stringify(this.#database));
   }
+
+  insert(table, data) {
+    if (Array.isArray(this.#database[table])) {
+      // verifica se a tabela já existe e é um array
+      this.#database[table].push(data); // se existir, adiciona o novo dado ao array
+    } else {
+      // se não existir, cria a tabela e adiciona o dado
+      this.#database[table] = [data];
+    }
+    this.#persist(); // chama o método para persistir os dados no arquivo
+  }
 }
