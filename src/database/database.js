@@ -33,4 +33,9 @@ export class Database {
     }
     this.#persist(); // chama o método para persistir os dados no arquivo
   }
+
+  select(table) { // seleciona todos os dados de uma tabela
+    let data = this.#database[table] ?? []; // se a tabela não existir, retorna um array vazio
+    return data;
+  }
 }
