@@ -6,7 +6,7 @@ const database = new Database(); // Instancia o banco de dados
 export function routeHandler(request, response) {
   // Define a rota para obter todos os tickets
   const route = routes.find((route) => {
-    return route.method === request.method && route.path === request.url;
+    return route.method === request.method && route.path.test(request.url); // Verifica se o método e o caminho da rota correspondem ao pedido
   });
 
   // Se a rota for encontrada, chama o controlador
