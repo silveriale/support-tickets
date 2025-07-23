@@ -34,8 +34,20 @@ export class Database {
     this.#persist(); // chama o método para persistir os dados no arquivo
   }
 
-  select(table) { // seleciona todos os dados de uma tabela
+  select(table, filters) {
+    // seleciona todos os dados de uma tabela
     let data = this.#database[table] ?? []; // se a tabela não existir, retorna um array vazio
-    return data;
+
+    if (filters) {
+      // se filtros forem fornecidos, aplica os filtros
+      data = data.filter((row) => {
+        // filtra os dados com base nos filtros
+        return Object.entries(filters).some(([key, value]) => {
+          // verifica se algum dos filtros corresponde a uma chave e valor no objeto
+          return row[key].toLowerCase().includes(value.toLowerCase()); // compara os valores, ignorando maiúsculas e minúsculas
+        });
+      });
+    }
+    return data; // retorna os dados filtrados
   }
 }
