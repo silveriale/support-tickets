@@ -50,4 +50,18 @@ export class Database {
     }
     return data; // retorna os dados filtrados
   }
+
+  update(table, id, data) {
+    const rowIndex = this.#database[table].findIndex((row) => row.id === id); // encontra o índice da linha com o id fornecido
+
+    if (rowIndex > -1) {
+      // se a linha for encontrada
+      this.#database[table][rowIndex] = {
+        // atualiza a linha com os novos dados
+        ...this.#database[table][rowIndex], // mantém os dados existentes
+        ...data, // atualiza os dados da linha com os novos dados (sobreescreve os campos existentes se necessário)
+      };
+      this.#persist(); // chama o método para persistir os dados no arquivo
+    }
+  }
 }
