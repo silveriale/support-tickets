@@ -64,4 +64,13 @@ export class Database {
       this.#persist(); // chama o método para persistir os dados no arquivo
     }
   }
+
+  delete(table, id) {
+    const rowIndex = this.#database[table].findIndex((row) => row.id === id); // encontra o índice da linha com o id fornecido
+
+    if (rowIndex > -1) {
+      this.#database[table].splice(rowIndex, 1); // remove a linha do array
+      this.#persist(); // chama o método para persistir/atualizar os dados no arquivo
+    }
+  }
 }
